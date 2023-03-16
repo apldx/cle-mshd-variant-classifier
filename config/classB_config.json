@@ -1,0 +1,238 @@
+{
+  "ASXL1": {
+    "consequence": [
+      "stop_gained",
+      "frameshift"
+    ]
+  },
+  "BCOR": {
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "CALR": {
+    "indel_in_exons": [
+      9
+    ]
+  },
+  "CBL": {
+    "missense_in_codon_ranges": [
+      [
+        366,
+        420
+      ]
+    ]
+  },
+  "CEBPA": {
+    "inframe_indel_in_codon_ranges": [
+      [
+        278,
+        345
+      ]
+    ]
+  },
+  "CSF3R": {
+    "psyntax": [
+      "T618I"
+    ]
+  },
+  "DDX41": {
+    "psyntax": [
+      "R525H"
+    ],
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "DNMT3A": {
+    "missense_in_codons": [
+      543,
+      635,
+      741,
+      736,
+      739,
+      770,
+      880,
+      882,
+      893,
+      904,
+      910
+    ],
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "ETV6": {
+    "consequence": [
+      "stop_gained",
+      "frameshift"
+    ]
+  },
+  "EZH2": {
+    "consequence": [
+      "stop_gained",
+      "frameshift"
+    ]
+  },
+  "GATA2": {
+    "missense_in_codon_ranges": [
+      [
+        349,
+        398
+      ]
+    ],
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "MPL": {
+    "psyntax": [
+      "W515K",
+      "W515L"
+    ]
+  },
+  "NF1": {
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "NRAS": {
+    "missense_in_codons": [
+      12,
+      13,
+      61
+    ]
+  },
+  "NPM1": {
+    "psyntax": [
+      "W288fs*12"
+    ]
+  },
+  "PHF6": {
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "PPM1D": {
+    "consequence": [
+      "stop_gained",
+      "frameshift"
+    ]
+  },
+  "JAK2": {
+    "psyntax": "V617F"
+  },
+  "RUNX1": {
+    "consequence": [
+      "stop_gained",
+      "frameshift"
+    ]
+  },
+  "SETBP1": {
+    "missense_in_codons": [
+      858,
+      864,
+      865,
+      868,
+      869,
+      870
+    ]
+  },
+  "SF3B1": {
+    "missense_in_codons": [
+      622,
+      623,
+      625,
+      626,
+      662,
+      663,
+      666,
+      704,
+      740,
+      742,
+      781
+    ],
+    "psyntax": [
+      "K700E"
+    ]
+  },
+  "SRSF2": {
+    "missense_in_codons": [
+      95
+    ],
+    "inframe_deletion_in_codons": [
+      95
+    ]
+  },
+  "STAG2": {
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "TET2": {
+    "missense_in_codon_ranges": [
+      [
+        1134,
+        1444
+      ],
+      [
+        1842,
+        1921
+      ]
+    ],
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "TP53": {
+    "missense_except_psyntax": [
+      "P47S",
+      "P72R"
+    ],
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "U2AF1": {
+    "missense_in_codons": [
+      34,
+      157
+    ]
+  },
+  "UBA1": {
+    "missense_in_codons": [
+      41
+    ]
+  },
+  "WT1": {
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "ZRSR2": {
+    "consequence": [
+      "stop_gained",
+      "frameshift"
+    ]
+  }
+}
