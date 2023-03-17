@@ -20,8 +20,8 @@ Node v18.x
 Install
 -------
 
-    git clone 
-    cd 
+    git clone https://github.com/apldx/cle-mshd-variant-classifier
+    cd cle-mshd-variant-classifier
     npm i
 
 Run tests under `test`
