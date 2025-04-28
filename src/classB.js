@@ -74,13 +74,68 @@ checks.missense_in_codons = (variantData, codons) => {
         return {
           ...template,
           match: true,
-          evidence: `${variantData.gene} missense_in_codons ${codon}`
+          evidence: `${variantData.gene} missense_in_codons codon: ${codon}`
         }
       }
     }
   }
   return false;
 }
+
+// missense in list of codons
+checks.missense_except_psyntax = (variantData, exceptions) => {
+  if (variantData.consequence.includes('missense')) {
+    for (const exception of exceptions) {
+      if (variantData.psyntax == exception) {
+        return false;
+      }
+    }
+    return {
+      ...template,
+      match: true,
+      evidence: `${variantData.gene} missense_except_psyntax`
+    }
+  }
+  return false;
+}
+
+// inframe_deletion in list of codons
+checks.inframe_deletion_in_codons = (variantData, codons) => {
+  const codon = psyntax_to_codon(variantData.psyntax);
+  if (!codon) {
+    return false;
+  }
+  if (variantData.consequence.includes('inframe_deletion')) {
+    for (const target_codon of codons) {
+      if (codon == target_codon) {
+        return {
+          ...template,
+          match: true,
+          evidence: `${variantData.gene} inframe_deletion_in_codons codon: ${codon}`
+        }
+      }
+    }
+  }
+  return false;
+}
+
+// inframe_insertion in list of exons
+checks.inframe_insertion_in_exons = (variantData, exons) => {
+  if (variantData.consequence.includes('inframe_insertion')) {
+    for (const exon of exons) {
+      if (variantData.exon == exon) {
+        return {
+          ...template,
+          match: true,
+          evidence: `${variantData.gene} inframe_insertion_in_exons exon: ${exon}`
+        }
+      }
+    }
+  }
+  return false;
+}
+
+
 
 
 // missense in codon ranges
@@ -96,6 +151,27 @@ checks.missense_in_codon_ranges = (variantData, codon_ranges) => {
           ...template,
           match: true,
           evidence: `${variantData.gene} missense_in_codon_ranges ${codon_range[0]}-${codon_range[1]}`
+        }
+      }
+    }
+  }
+  return false;
+}
+
+// inframe_indel in codon ranges
+checks.inframe_indel_in_codon_ranges = (variantData, codon_ranges) => {
+  const codon = psyntax_to_codon(variantData.psyntax);
+  if (!codon) {
+    return false;
+  }
+  if ((variantData.consequence.includes('inframe_insertion')) ||
+    (variantData.consequence.includes('inframe_deletion'))) {
+    for (const codon_range of codon_ranges) {
+      if (codon >= codon_range[0] && codon <= codon_range[1]) {
+        return {
+          ...template,
+          match: true,
+          evidence: `${variantData.gene} inframe_indel_in_codon_ranges ${codon_range[0]}-${codon_range[1]}`
         }
       }
     }
@@ -119,6 +195,21 @@ checks.indel_in_exons = (variantData, exons) => {
   return false;
 }
 
+// nonsense (consequence stop_gained) in exons
+checks.nonsense_in_exons = (variantData, exons) => {
+  if (variantData.consequence.includes('stop_gained')) {
+    for (const exon of exons) {
+      if (variantData.exon === exon) {
+        return {
+          ...template,
+          match: true,
+          evidence: `${variantData.gene} nonsense_in_exons in exon ${variantData.exon}`
+        }
+      }
+    }
+  }
+  return false;
+}
 const classB = (variantData) => {
   // First check for literature annotation flags from the pipeline
   if ((variantData.annotation.includes('AMLTCGA')) || 

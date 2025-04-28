@@ -133,6 +133,19 @@
       "splice"
     ]
   },
+  "GNB1": {
+    "missense_in_codons": [
+      57,
+      80
+    ]
+  },
+  "KRAS": {
+    "missense_in_codons": [
+      12,
+      13,
+      61
+    ]
+  },
   "MPL": {
     "psyntax": [
       "W515K",
@@ -187,7 +200,15 @@
     ]
   },
   "JAK2": {
-    "psyntax": "V617F",
+    "psyntax": [
+      "V617F"
+    ],
+    "missense_in_codon_ranges": [
+      [
+        505,
+        547
+      ]
+    ],
     "inframe_indel_in_codon_ranges": [
       [
         505,
@@ -301,6 +322,11 @@
   "UBA1": {
     "missense_in_codons": [
       41
+    ]
+  },
+  "UBTF": {
+    "inframe_insertion_in_exons": [
+      13
     ]
   },
   "WT1": {
