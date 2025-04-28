@@ -4,15 +4,15 @@ let res = false;
 const variantData = {
   gene: 'FLT3',
   consequence: 'inframe_insertion',
-  exon: '13/24',
+  exon: 14,
   annotation: ''
 };
 
-// FLT3 insertion with exon 13 is a FLT3-ITD, so the
+// FLT3 insertion with exon 14 is a FLT3-ITD, so the
 // classifier returns an object with `class` 'A', 
 // `match` set to `true`, and a string with
 // evidence for the classification
-console.log('FLT3 insertion exon 13')
+console.log('FLT3 insertion exon 14')
 res = variantClassifier(variantData);
 if (res) {
   console.log(res);
@@ -24,7 +24,7 @@ if (res) {
 // match anything else in the classifier, so the classifier
 // returns false
 console.log('FLT3 insertion exon 16')
-variantData.exon = '16/24';
+variantData.exon = 16;
 res = variantClassifier(variantData);
 if (res) {
   console.log(res);

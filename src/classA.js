@@ -7,7 +7,7 @@ const classA = (variantData) => {
   // FLT3-ITD
   if (variantData.gene === 'FLT3') {
     if (variantData.consequence.includes('inframe_insertion')) {
-      if (variantData.exon.includes('14')) {
+      if (variantData.exon == 14) {
         return {
           ...template,
           match: true,
@@ -20,8 +20,8 @@ const classA = (variantData) => {
   // FLT3-TKD
   if (variantData.gene === 'FLT3') {
     if (variantData.consequence.includes('missense')) {
-      if ((variantData.psyntax.includes('p.D385')) ||
-        variantData.psyntax.includes('p.I836')) {
+      if ((variantData.psyntax.includes('D385')) ||
+        variantData.psyntax.includes('I836')) {
         return {
           ...template,
           match: true,
@@ -34,7 +34,7 @@ const classA = (variantData) => {
   // IDH1
   if (variantData.gene === 'IDH1') {
     if (variantData.consequence.includes('missense')) {
-      if (variantData.psyntax.includes('R132')) {
+      if (variantData.psyntax.startsWith('R132')) {
         return {
           ...template,
           match: true,
@@ -47,8 +47,8 @@ const classA = (variantData) => {
   // IDH2
   if (variantData.gene === 'IDH2') {
     if (variantData.consequence.includes('missense')) {
-      if ((variantData.psyntax == 'p.R140Q') ||
-        variantData.psyntax.includes('p.R172')) {
+      if ((variantData.psyntax == 'R140Q') ||
+        variantData.psyntax.startsWith('R172')) {
         return {
           ...template,
           match: true,

@@ -21,6 +21,20 @@ checks.consequence = (variantData, consequences) => {
   return false;
 }
 
+// psyntax equals psyntax from list
+checks.psyntax = (variantData, psyntaxes) => {
+  for (const psyntax of psyntaxes) {
+    if (variantData.psyntax == psyntax) {
+      return {
+        ...template,
+        match: true,
+        evidence: `${variantData.gene} psyntax ${variantData.psyntax}`
+      }
+    }
+  }
+  return false;
+}
+
 // type INDEL with exact exon match to exon from list
 checks.indel_in_exons = (variantData, exons) => {
   if (variantData.type === 'INDEL') {
@@ -57,7 +71,7 @@ const classB = (variantData) => {
 
   for (const check of Object.keys(geneConfig)) {
     // Temporarily disable checks that are not yet implemented
-    if (check !== 'consequence' && check !== 'indel_in_exons') {
+    if (check !== 'psyntax' && check !== 'consequence' && check !== 'indel_in_exons') {
       continue;
     }
     const res = checks[check](variantData, geneConfig[check]);
