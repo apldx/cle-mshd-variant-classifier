@@ -62,6 +62,27 @@ checks.frameshift_after_codon = (variantData, codon_cutoff) => {
   return false;
 }
 
+// missense in list of codons
+checks.missense_in_codons = (variantData, codons) => {
+  const codon = psyntax_to_codon(variantData.psyntax);
+  if (!codon) {
+    return false;
+  }
+  if (variantData.consequence.includes('missense')) {
+    for (const target_codon of codons) {
+      if (codon == target_codon) {
+        return {
+          ...template,
+          match: true,
+          evidence: `${variantData.gene} missense_in_codons ${codon}`
+        }
+      }
+    }
+  }
+  return false;
+}
+
+
 // missense in codon ranges
 checks.missense_in_codon_ranges = (variantData, codon_ranges) => {
   const codon = psyntax_to_codon(variantData.psyntax);
