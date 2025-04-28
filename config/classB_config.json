@@ -2,7 +2,8 @@
   "ASXL1": {
     "consequence": [
       "stop_gained",
-      "frameshift"
+      "frameshift",
+      "splice"
     ]
   },
   "BCOR": {
@@ -12,9 +13,21 @@
       "splice"
     ]
   },
+  "BCORL1": {
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
+    ]
+  },
+  "BRAF": {
+    "psyntax": [
+      "V600E"
+    ]
+  },
   "CALR": {
-    "indel_in_exons": [
-      9
+    "frameshift_after_codon": [
+      352
     ]
   },
   "CBL": {
@@ -26,6 +39,10 @@
     ]
   },
   "CEBPA": {
+    "consequence": [
+      "stop_gained",
+      "frameshift"
+    ],
     "inframe_indel_in_codon_ranges": [
       [
         278,
@@ -36,6 +53,16 @@
   "CSF3R": {
     "psyntax": [
       "T618I"
+    ],
+    "nonsense_in_exons": [
+      16
+    ]
+  },
+  "CUX1": {
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
     ]
   },
   "DDX41": {
@@ -68,13 +95,27 @@
       "splice"
     ]
   },
+  "ETNK1": {
+    "psyntax": [
+      "H243Y",
+      "N244S"
+    ]
+  },
   "ETV6": {
     "consequence": [
       "stop_gained",
-      "frameshift"
+      "frameshift",
+      "splice"
     ]
   },
   "EZH2": {
+    "psyntax": [
+      "N693K"
+    ],
+    "missense_in_codons": [
+      646,
+      741
+    ],
     "consequence": [
       "stop_gained",
       "frameshift"
@@ -128,16 +169,49 @@
   "PPM1D": {
     "consequence": [
       "stop_gained",
-      "frameshift"
+      "frameshift",
+      "splice"
+    ]
+  },
+  "PRPF8": {
+    "missense_in_codons": [
+      1594,
+      1598
+    ]
+  },
+  "PTPN11": {
+    "missense_in_codon_ranges": [
+      [
+        61,
+        76
+      ]
     ]
   },
   "JAK2": {
-    "psyntax": "V617F"
+    "psyntax": "V617F",
+    "inframe_indel_in_codon_ranges": [
+      [
+        505,
+        547
+      ]
+    ]
   },
-  "RUNX1": {
+  "RAD21": {
     "consequence": [
       "stop_gained",
-      "frameshift"
+      "frameshift",
+      "splice"
+    ]
+  },
+  "RUNX1": {
+    "missense_in_codons": [
+      166,
+      198
+    ],
+    "consequence": [
+      "stop_gained",
+      "frameshift",
+      "splice"
     ]
   },
   "SETBP1": {
@@ -151,6 +225,9 @@
     ]
   },
   "SF3B1": {
+    "psyntax": [
+      "K700E"
+    ],
     "missense_in_codons": [
       622,
       623,
@@ -163,9 +240,6 @@
       740,
       742,
       781
-    ],
-    "psyntax": [
-      "K700E"
     ]
   },
   "SRSF2": {
@@ -181,6 +255,14 @@
       "stop_gained",
       "frameshift",
       "splice"
+    ]
+  },
+  "STAT3": {
+    "missense_in_codon_ranges": [
+      [
+        584,
+        674
+      ]
     ]
   },
   "TET2": {
@@ -232,7 +314,8 @@
   "ZRSR2": {
     "consequence": [
       "stop_gained",
-      "frameshift"
+      "frameshift",
+      "splice"
     ]
   }
 }
