@@ -20,8 +20,10 @@ const classA = (variantData) => {
   // FLT3-TKD
   if (variantData.gene === 'FLT3') {
     if (variantData.consequence.includes('missense')) {
-      if ((variantData.psyntax.includes('D385')) ||
-        variantData.psyntax.includes('I836')) {
+      if (
+        variantData.psyntax.includes('D385') ||
+        variantData.psyntax.includes('I836')
+      ) {
         return {
           ...template,
           match: true,
@@ -47,8 +49,10 @@ const classA = (variantData) => {
   // IDH2
   if (variantData.gene === 'IDH2') {
     if (variantData.consequence.includes('missense')) {
-      if ((variantData.psyntax == 'R140Q') ||
-        variantData.psyntax.startsWith('R172')) {
+      if (
+        variantData.psyntax == 'R140Q' ||
+        variantData.psyntax.startsWith('R172')
+      ) {
         return {
           ...template,
           match: true,
