@@ -26,9 +26,7 @@
     ]
   },
   "CALR": {
-    "frameshift_after_codon": [
-      352
-    ]
+    "frameshift_after_codon": 352
   },
   "CBL": {
     "missense_in_codon_ranges": [

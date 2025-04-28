@@ -1,5 +1,14 @@
 import config from '../config/classB_config.json' assert { type: 'json' };
 
+const psyntax_to_codon = (psyntax) => {
+  if (!psyntax) {
+    return false;
+  }
+
+  const res = /(\d+)/.exec(psyntax);
+  return res ? parseInt(res[0]) : false;
+}
+
 const template = {
   class: 'B',
   match: false
@@ -29,6 +38,44 @@ checks.psyntax = (variantData, psyntaxes) => {
         ...template,
         match: true,
         evidence: `${variantData.gene} psyntax ${variantData.psyntax}`
+      }
+    }
+  }
+  return false;
+}
+
+// frameshift after codon
+checks.frameshift_after_codon = (variantData, codon_cutoff) => {
+  const codon = psyntax_to_codon(variantData.psyntax);
+  if (!codon) {
+    return false;
+  }
+  if (variantData.consequence.includes('frameshift')) {
+    if (codon > codon_cutoff) {
+      return {
+        ...template,
+        match: true,
+        evidence: `${variantData.gene} frameshift_after_codon ${codon_cutoff}`
+      }
+    }
+  }
+  return false;
+}
+
+// missense in codon ranges
+checks.missense_in_codon_ranges = (variantData, codon_ranges) => {
+  const codon = psyntax_to_codon(variantData.psyntax);
+  if (!codon) {
+    return false;
+  }
+  if (variantData.consequence.includes('missense')) {
+    for (const codon_range of codon_ranges) {
+      if (codon >= codon_range[0] && codon <= codon_range[1]) {
+        return {
+          ...template,
+          match: true,
+          evidence: `${variantData.gene} missense_in_codon_ranges ${codon_range[0]}-${codon_range[1]}`
+        }
       }
     }
   }
@@ -71,7 +118,8 @@ const classB = (variantData) => {
 
   for (const check of Object.keys(geneConfig)) {
     // Temporarily disable checks that are not yet implemented
-    if (check !== 'psyntax' && check !== 'consequence' && check !== 'indel_in_exons') {
+    if (!Object.keys(checks).includes(check)) {
+      console.log(`Skipping unknown check ${check}`);
       continue;
     }
     const res = checks[check](variantData, geneConfig[check]);
