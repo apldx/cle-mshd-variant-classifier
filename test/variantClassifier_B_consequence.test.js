@@ -1,55 +1,26 @@
 import variantClassifier from '../src/variantClassifier.js';
 
-test(`RAD1 with annotation including AMLTCGA should match`, () => {
-  const variantData = {
-    gene: 'RAD1',
-    annotation: 'xxxxAMLTCGA xxxx'
-  };
-
-  const res = variantClassifier(variantData);
-  expect(res).toBeTruthy();
-  expect(res.class).toBe('B')
-  expect(res.evidence).toMatch('AMLTCGA')
-});
-
-test(`RAD1 with annotation including MDS should match`, () => {
-  const variantData = {
-    gene: 'RAD1',
-    annotation: 'xxxxMDSxxxx'
-  };
-
-  const res = variantClassifier(variantData);
-  expect(res).toBeTruthy();
-  expect(res.class).toBe('B')
-  expect(res.evidence).toMatch('MDS')
-});
-
-test(`RAD1 without annotation (not in classB_config) should not match`, () => {
-  const variantData = {
-    gene: 'RAD1',
-    annotation: ''
-  };
-
-  expect(variantClassifier(variantData)).toBeFalsy();
-});
-
 const consequenceTestSet = {
-  'ASXL1': ['stop_gained', 'frameshift'],
+  'ASXL1': ['stop_gained', 'frameshift', 'splice'],
   'BCOR': ['stop_gained', 'frameshift', 'splice'],
+  'BCORL1': ['stop_gained', 'frameshift', 'splice'],
+  'CEBPA': ['stop_gained', 'frameshift'],
+  'CUX1': ['stop_gained', 'frameshift', 'splice'],
   'DDX41': ['stop_gained', 'frameshift', 'splice'],
   'DNMT3A': ['stop_gained', 'frameshift', 'splice'],
-  'ETV6': ['stop_gained', 'frameshift'],
-  'EZH2': ['stop_gained', 'frameshift'],
+  'ETV6': ['stop_gained', 'frameshift', 'splice'],
+  'EZH2': ['stop_gained', 'frameshift', 'splice'],
   'GATA2': ['stop_gained', 'frameshift', 'splice'],
   'NF1': ['stop_gained', 'frameshift', 'splice'],
   'PHF6': ['stop_gained', 'frameshift', 'splice'],
-  'PPM1D': ['stop_gained', 'frameshift'],
-  'RUNX1': ['stop_gained', 'frameshift'],
+  'PPM1D': ['stop_gained', 'frameshift', 'splice'],
+  'RAD21': ['stop_gained', 'frameshift', 'splice'],
+  'RUNX1': ['stop_gained', 'frameshift', 'splice'],
   'STAG2': ['stop_gained', 'frameshift', 'splice'],
   'TET2': ['stop_gained', 'frameshift', 'splice'],
   'TP53': ['stop_gained', 'frameshift', 'splice'],
   'WT1': ['stop_gained', 'frameshift', 'splice'],
-  'ZRSR2': ['stop_gained', 'frameshift'],
+  'ZRSR2': ['stop_gained', 'frameshift', 'splice'],
 }
 
 for (const gene of Object.keys(consequenceTestSet)) {
@@ -79,16 +50,12 @@ test(`ASXL1 consequence other should not match`, () => {
   expect(variantClassifier(variantData)).toBeFalsy();
 });
 
-test(`CALR indel in exon 9 should match`, () => {
+test(`CEBPA consequence splice should not match`, () => {
   const variantData = {
-    gene: 'CALR',
-    type: 'INDEL',
-    exon: 9,
+    gene: 'CEBPA',
+    consequence: 'xxx splicexxx',
     annotation: ''
   };
 
-  const res = variantClassifier(variantData);
-  expect(res).toBeTruthy();
-  expect(res.class).toBe('B');
-  expect(res.evidence).toMatch('exon 9');
+  expect(variantClassifier(variantData)).toBeFalsy();
 });

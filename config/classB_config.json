@@ -118,7 +118,8 @@
     ],
     "consequence": [
       "stop_gained",
-      "frameshift"
+      "frameshift",
+      "splice"
     ]
   },
   "GATA2": {
