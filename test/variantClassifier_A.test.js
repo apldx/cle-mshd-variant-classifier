@@ -83,11 +83,12 @@ for (const psyntax of ['D385']) {
 }
 
 for (const aa of ['C', 'G', 'H', 'L', 'S']) {
-  test(`IDH1: IDH1 missense with R132${aa} should match`, () => {
+  const psyntax = `R132${aa}`;
+  test(`IDH1: IDH1 missense with ${psyntax} should match`, () => {
     const variantData = {
       gene: 'IDH1',
       consequence: 'missense_variant',
-      psyntax: `R132${aa}`,
+      psyntax: `${psyntax}`,
       annotation: ''
     };
 
@@ -99,11 +100,12 @@ for (const aa of ['C', 'G', 'H', 'L', 'S']) {
 }
 
 for (const aa of ['W', 'N', 'P']) {
-  test(`IDH1: IDH1 missense with R132${aa} should not match`, () => {
+  const psyntax = `R132${aa}`;
+  test(`IDH1: IDH1 missense with ${psyntax} should not match`, () => {
     const variantData = {
       gene: 'IDH1',
       consequence: 'missense_variant',
-      psyntax: `R132${aa}`,
+      psyntax: `${psyntax}`,
       annotation: ''
     };
 
@@ -126,8 +128,9 @@ for (const psyntax of ['R132C']) {
   });
 }
 
-for (const psyntax of ['R140Q']) {
-  test(`IDH2: IDH2 psyntax ${psyntax} should match`, () => {
+for (const aa of ['G', 'L', 'Q', 'W']) {
+  const psyntax = `R140${aa}`;
+  test(`IDH2: IDH2 missense with ${psyntax} should match`, () => {
     const variantData = {
       gene: 'IDH2',
       consequence: 'missense_variant',
@@ -139,6 +142,21 @@ for (const psyntax of ['R140Q']) {
     expect(res).toBeTruthy();
     expect(res.class).toBe('A');
     expect(res.evidence).toMatch(/psyntax/);
+  });
+}
+
+for (const aa of ['N', 'P', 'S']) {
+  const psyntax = `R140${aa}`;
+  test(`IDH2: IDH2 missense with ${psyntax} should not match`, () => {
+    const variantData = {
+      gene: 'IDH2',
+      consequence: 'missense_variant',
+      psyntax: `${psyntax}`,
+      annotation: ''
+    };
+
+    const res = variantClassifier(variantData);
+    expect(res).toBeFalsy();
   });
 }
 

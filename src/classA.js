@@ -60,10 +60,26 @@ const classA = (variantData) => {
   // IDH2
   if (variantData.gene === 'IDH2') {
     if (variantData.consequence.includes('missense')) {
-      if (
-        variantData.psyntax == 'R140Q' ||
-        variantData.psyntax.startsWith('R172')
-      ) {
+      if (variantData.psyntax.startsWith('R140')) {
+        const aaSet = 'GLQW';
+        if (
+          variantData.psyntax.length === 5 &&
+          isInSet(variantData.psyntax[4], aaSet)
+        ) {
+          return {
+            ...template,
+            match: true,
+            evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
+          };
+        }
+      }
+    }
+  }
+
+  // IDH2
+  if (variantData.gene === 'IDH2') {
+    if (variantData.consequence.includes('missense')) {
+      if (variantData.psyntax.startsWith('R172')) {
         return {
           ...template,
           match: true,
