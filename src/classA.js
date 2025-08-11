@@ -80,11 +80,16 @@ const classA = (variantData) => {
   if (variantData.gene === 'IDH2') {
     if (variantData.consequence.includes('missense')) {
       if (variantData.psyntax.startsWith('R172')) {
-        return {
-          ...template,
-          match: true,
-          evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
-        };
+        const aaSet = 'GKMSW';
+        if (
+          variantData.psyntax.length === 5 &&
+          isInSet(variantData.psyntax[4], aaSet)
+        )
+          return {
+            ...template,
+            match: true,
+            evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
+          };
       }
     }
   }
