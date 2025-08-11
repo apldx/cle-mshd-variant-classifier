@@ -160,6 +160,19 @@ for (const aa of ['N', 'P', 'S']) {
   });
 }
 
+for (const psyntax of ['R140G']) {
+  test(`IDH2: IDH2 non-missense with ${psyntax} should not match`, () => {
+    const variantData = {
+      gene: 'IDH2',
+      consequence: 'synonymous_variant',
+      psyntax: psyntax,
+      annotation: ''
+    };
+
+    expect(variantClassifier(variantData)).toBeFalsy();
+  });
+}
+
 for (const aa of ['G', 'K', 'M', 'S', 'W']) {
   const psyntax = `R172${aa}`;
   test(`IDH2: IDH2 missense with ${psyntax} should match`, () => {
@@ -192,8 +205,8 @@ for (const aa of ['L', 'N', 'P']) {
   });
 }
 
-for (const psyntax of ['R172']) {
-  test(`IDH2: IDH2 non-missense psyntax starting with ${psyntax} should not match`, () => {
+for (const psyntax of ['R172G']) {
+  test(`IDH2: IDH2 non-missense with ${psyntax} should not match`, () => {
     const variantData = {
       gene: 'IDH2',
       consequence: 'synonymous_variant',
