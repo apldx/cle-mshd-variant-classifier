@@ -191,6 +191,30 @@ test('CSF3R T618Q should not match', () => {
   expect(variantClassifier(variantData)).toBeFalsy();
 });
 
+test('CSF3R T640N should match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    psyntax: 'T640N',
+    annotation: ''
+  };
+
+  const res = variantClassifier(variantData);
+  expect(res).toBeTruthy();
+  expect(res.class).toBe('B');
+  expect(res.evidence).toMatch('psyntax');
+});
+
+test('CSF3R T640Q should not match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    consequence: 'missense',
+    psyntax: 'T640Q',
+    annotation: ''
+  };
+
+  expect(variantClassifier(variantData)).toBeFalsy();
+});
+
 test('CSF3R stop_gained in exon 16 should match', () => {
   const variantData = {
     gene: 'CSF3R',
@@ -628,6 +652,46 @@ test('NPM1 W288Q should not match', () => {
   const variantData = {
     gene: 'NPM1',
     psyntax: 'W288Q',
+    annotation: ''
+  };
+
+  expect(variantClassifier(variantData)).toBeFalsy();
+});
+
+const PHF6_missense_psyntaxes = ['R274', 'I314'];
+
+for (const PHF6_missense_psyntax of PHF6_missense_psyntaxes) {
+  test(`PHF6 missense in ${PHF6_missense_psyntax} should match`, () => {
+    const variantData = {
+      gene: 'PHF6',
+      consequence: 'missense',
+      psyntax: PHF6_missense_psyntax,
+      annotation: ''
+    };
+
+    const res = variantClassifier(variantData);
+    expect(res).toBeTruthy();
+    expect(res.class).toBe('B');
+    expect(res.evidence).toMatch('missense_in_codons');
+  });
+}
+
+test('PHF6 synonymous in R274 should not match', () => {
+  const variantData = {
+    gene: 'PHF6',
+    consequence: 'synonymous',
+    psyntax: 'R274',
+    annotation: ''
+  };
+
+  expect(variantClassifier(variantData)).toBeFalsy();
+});
+
+test('PHF6 missense in R275 should not match', () => {
+  const variantData = {
+    gene: 'PHF6',
+    consequence: 'missense',
+    psyntax: 'R275',
     annotation: ''
   };
 

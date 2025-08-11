@@ -50,7 +50,8 @@
   },
   "CSF3R": {
     "psyntax": [
-      "T618I"
+      "T618I",
+      "T640N"
     ],
     "nonsense_in_exons": [
       16
@@ -176,6 +177,10 @@
       "stop_gained",
       "frameshift",
       "splice"
+    ],
+    "missense_in_codons": [
+      274,
+      314
     ]
   },
   "PPM1D": {

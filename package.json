@@ -9,6 +9,7 @@
     "test": "jest",
     "test-verbose": "jest --silent=false --verbose",
     "test-verbose-A": "jest --silent=false --verbose test/variantClassifier_A.test.js",
+    "test-verbose-B-other": "jest --silent=false --verbose test/variantClassifier_B_other.test.js",
     "test-watch": "jest --watch --silent=false --verbose"
   },
   "devDependencies": {
