@@ -8,6 +8,7 @@
     "lint": "eslint src/*",
     "test": "jest",
     "test-verbose": "jest --silent=false --verbose",
+    "test-verbose-A": "jest --silent=false --verbose test/variantClassifier_A.test.js",
     "test-watch": "jest --watch --silent=false --verbose"
   },
   "devDependencies": {

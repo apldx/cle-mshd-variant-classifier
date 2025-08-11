@@ -1,3 +1,8 @@
+const isInSet = (letter, letterSet) => {
+  const regex = new RegExp(`[${letterSet}]`);
+  return regex.test(letter);
+};
+
 const classA = (variantData) => {
   const template = {
     class: 'A',
@@ -37,11 +42,17 @@ const classA = (variantData) => {
   if (variantData.gene === 'IDH1') {
     if (variantData.consequence.includes('missense')) {
       if (variantData.psyntax.startsWith('R132')) {
-        return {
-          ...template,
-          match: true,
-          evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
-        };
+        const aaSet = 'CGHLS';
+        if (
+          variantData.psyntax.length === 5 &&
+          isInSet(variantData.psyntax[4], aaSet)
+        ) {
+          return {
+            ...template,
+            match: true,
+            evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
+          };
+        }
       }
     }
   }

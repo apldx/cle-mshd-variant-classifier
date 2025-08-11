@@ -21,7 +21,7 @@ for (const exon of [14]) {
       gene: 'FLT3',
       consequence: 'missense_variant',
       exon: exon,
-      psyntax: `D100F`,
+      psyntax: 'D100F',
       annotation: ''
     };
 
@@ -58,7 +58,7 @@ for (const psyntax of ['D385', 'I836']) {
 }
 
 for (const psyntax of ['D100F']) {
-  test(`FLT3-TKD: FLT3 missense not in list should not match`, () => {
+  test('FLT3-TKD: FLT3 missense not in list should not match', () => {
     const variantData = {
       gene: 'FLT3',
       consequence: 'missense',
@@ -82,12 +82,12 @@ for (const psyntax of ['D385']) {
   });
 }
 
-for (const psyntax of ['R132']) {
-  test(`IDH1: IDH1 missense psyntax starting with ${psyntax} should match`, () => {
+for (const aa of ['C', 'G', 'H', 'L', 'S']) {
+  test(`IDH1: IDH1 missense with R132${aa} should match`, () => {
     const variantData = {
       gene: 'IDH1',
       consequence: 'missense_variant',
-      psyntax: psyntax,
+      psyntax: `R132${aa}`,
       annotation: ''
     };
 
@@ -98,8 +98,22 @@ for (const psyntax of ['R132']) {
   });
 }
 
-for (const psyntax of ['R132']) {
-  test(`IDH1: IDH1 non-missense psyntax starting with ${psyntax} should not match`, () => {
+for (const aa of ['W', 'N', 'P']) {
+  test(`IDH1: IDH1 missense with R132${aa} should not match`, () => {
+    const variantData = {
+      gene: 'IDH1',
+      consequence: 'missense_variant',
+      psyntax: `R132${aa}`,
+      annotation: ''
+    };
+
+    const res = variantClassifier(variantData);
+    expect(res).toBeFalsy();
+  });
+}
+
+for (const psyntax of ['R132C']) {
+  test(`IDH1: IDH1 non-missense psyntax ${psyntax} should not match`, () => {
     const variantData = {
       gene: 'IDH1',
       consequence: 'synonymous_variant',
@@ -108,8 +122,7 @@ for (const psyntax of ['R132']) {
     };
 
     const res = variantClassifier(variantData);
-    console.log(res)
-    expect(variantClassifier(variantData)).toBeFalsy();
+    expect(res).toBeFalsy();
   });
 }
 
@@ -154,7 +167,6 @@ for (const psyntax of ['R172']) {
       annotation: ''
     };
 
-    const res = variantClassifier(variantData);
     expect(variantClassifier(variantData)).toBeFalsy();
   });
 }
