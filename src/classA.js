@@ -4,6 +4,12 @@ const isInSet = (letter, letterSet) => {
 };
 
 const classA = (variantData) => {
+  // sanitize psyntax. For tests it may not be present, so check first
+  let psyntax = '';
+  if ('psyntax' in variantData) {
+    psyntax = variantData.psyntax.replace(/^p./, '');
+  }
+
   const template = {
     class: 'A',
     significance: 'potentially_therapeutic',
@@ -26,14 +32,11 @@ const classA = (variantData) => {
   // FLT3-TKD
   if (variantData.gene === 'FLT3') {
     if (variantData.consequence.includes('missense')) {
-      if (
-        variantData.psyntax.includes('D385') ||
-        variantData.psyntax.includes('I836')
-      ) {
+      if (psyntax.includes('D385') || psyntax.includes('I836')) {
         return {
           ...template,
           match: true,
-          evidence: `${variantData.gene} consequence: ${variantData.consequence} psyntax: ${variantData.psyntax} (FLT3-TKD)`
+          evidence: `${variantData.gene} consequence: ${variantData.consequence} psyntax: ${psyntax} (FLT3-TKD)`
         };
       }
     }
@@ -42,16 +45,13 @@ const classA = (variantData) => {
   // IDH1
   if (variantData.gene === 'IDH1') {
     if (variantData.consequence.includes('missense')) {
-      if (variantData.psyntax.startsWith('R132')) {
+      if (psyntax.startsWith('R132')) {
         const aaSet = 'CGHLS';
-        if (
-          variantData.psyntax.length === 5 &&
-          isInSet(variantData.psyntax[4], aaSet)
-        ) {
+        if (psyntax.length === 5 && isInSet(psyntax[4], aaSet)) {
           return {
             ...template,
             match: true,
-            evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
+            evidence: `${variantData.gene} psyntax: ${psyntax}`
           };
         }
       }
@@ -61,16 +61,13 @@ const classA = (variantData) => {
   // IDH2
   if (variantData.gene === 'IDH2') {
     if (variantData.consequence.includes('missense')) {
-      if (variantData.psyntax.startsWith('R140')) {
+      if (psyntax.startsWith('R140')) {
         const aaSet = 'GLQW';
-        if (
-          variantData.psyntax.length === 5 &&
-          isInSet(variantData.psyntax[4], aaSet)
-        ) {
+        if (psyntax.length === 5 && isInSet(psyntax[4], aaSet)) {
           return {
             ...template,
             match: true,
-            evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
+            evidence: `${variantData.gene} psyntax: ${psyntax}`
           };
         }
       }
@@ -80,16 +77,13 @@ const classA = (variantData) => {
   // IDH2
   if (variantData.gene === 'IDH2') {
     if (variantData.consequence.includes('missense')) {
-      if (variantData.psyntax.startsWith('R172')) {
+      if (psyntax.startsWith('R172')) {
         const aaSet = 'GKMSW';
-        if (
-          variantData.psyntax.length === 5 &&
-          isInSet(variantData.psyntax[4], aaSet)
-        )
+        if (psyntax.length === 5 && isInSet(psyntax[4], aaSet))
           return {
             ...template,
             match: true,
-            evidence: `${variantData.gene} psyntax: ${variantData.psyntax}`
+            evidence: `${variantData.gene} psyntax: ${psyntax}`
           };
       }
     }

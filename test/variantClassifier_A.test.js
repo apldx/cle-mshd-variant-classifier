@@ -22,7 +22,7 @@ for (const exon of [14]) {
       consequence: 'missense_variant',
       exon: exon,
       psyntax: 'D100F',
-      annotation: ''
+      annotations: ''
     };
 
     expect(variantClassifier(variantData)).toBeFalsy();
@@ -35,7 +35,7 @@ for (const exon of [13, 15]) {
       gene: 'FLT3',
       consequence: 'inframe_insertion',
       exon: exon,
-      annotation: ''
+      annotations: ''
     };
 
     expect(variantClassifier(variantData)).toBeFalsy();
@@ -63,7 +63,7 @@ for (const psyntax of ['D100F']) {
       gene: 'FLT3',
       consequence: 'missense',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     expect(variantClassifier(variantData)).toBeFalsy();
@@ -75,7 +75,7 @@ for (const psyntax of ['D385']) {
       gene: 'FLT3',
       consequence: 'synonymous_variant',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     expect(variantClassifier(variantData)).toBeFalsy();
@@ -89,7 +89,7 @@ for (const aa of ['C', 'G', 'H', 'L', 'S']) {
       gene: 'IDH1',
       consequence: 'missense_variant',
       psyntax: `${psyntax}`,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -106,7 +106,7 @@ for (const aa of ['W', 'N', 'P']) {
       gene: 'IDH1',
       consequence: 'missense_variant',
       psyntax: `${psyntax}`,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -120,7 +120,7 @@ for (const psyntax of ['R132C']) {
       gene: 'IDH1',
       consequence: 'synonymous_variant',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -135,7 +135,7 @@ for (const aa of ['G', 'L', 'Q', 'W']) {
       gene: 'IDH2',
       consequence: 'missense_variant',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -152,7 +152,7 @@ for (const aa of ['N', 'P', 'S']) {
       gene: 'IDH2',
       consequence: 'missense_variant',
       psyntax: `${psyntax}`,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -166,7 +166,7 @@ for (const psyntax of ['R140G']) {
       gene: 'IDH2',
       consequence: 'synonymous_variant',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     expect(variantClassifier(variantData)).toBeFalsy();
@@ -180,7 +180,7 @@ for (const aa of ['G', 'K', 'M', 'S', 'W']) {
       gene: 'IDH2',
       consequence: 'missense_variant',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -197,7 +197,7 @@ for (const aa of ['L', 'N', 'P']) {
       gene: 'IDH2',
       consequence: 'missense_variant',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -211,7 +211,7 @@ for (const psyntax of ['R172G']) {
       gene: 'IDH2',
       consequence: 'synonymous_variant',
       psyntax: psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     expect(variantClassifier(variantData)).toBeFalsy();

@@ -1,5 +1,9 @@
 import config from '../config/classB_config.json';
 
+const sanitizePsyntax = (psyntax) => {
+  return psyntax.replace(/^p./, '');
+};
+
 const psyntax_to_codon = (psyntax) => {
   if (!psyntax) {
     return false;
@@ -33,12 +37,13 @@ checks.consequence = (variantData, consequences) => {
 
 // psyntax equals psyntax from list
 checks.psyntax = (variantData, psyntaxes) => {
+  const sPsyntax = sanitizePsyntax(variantData.psyntax);
   for (const psyntax of psyntaxes) {
-    if (variantData.psyntax == psyntax) {
+    if (sPsyntax == psyntax) {
       return {
         ...template,
         match: true,
-        evidence: `${variantData.gene} psyntax ${variantData.psyntax}`
+        evidence: `${variantData.gene} psyntax ${sPsyntax}`
       };
     }
   }
@@ -47,7 +52,8 @@ checks.psyntax = (variantData, psyntaxes) => {
 
 // frameshift after codon
 checks.frameshift_after_codon = (variantData, codon_cutoff) => {
-  const codon = psyntax_to_codon(variantData.psyntax);
+  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
   }
@@ -65,7 +71,8 @@ checks.frameshift_after_codon = (variantData, codon_cutoff) => {
 
 // missense in list of codons
 checks.missense_in_codons = (variantData, codons) => {
-  const codon = psyntax_to_codon(variantData.psyntax);
+  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
   }
@@ -85,9 +92,10 @@ checks.missense_in_codons = (variantData, codons) => {
 
 // missense in list of codons
 checks.missense_except_psyntax = (variantData, exceptions) => {
+  const sPsyntax = sanitizePsyntax(variantData.psyntax);
   if (variantData.consequence.includes('missense')) {
     for (const exception of exceptions) {
-      if (variantData.psyntax == exception) {
+      if (sPsyntax == exception) {
         return false;
       }
     }
@@ -102,7 +110,8 @@ checks.missense_except_psyntax = (variantData, exceptions) => {
 
 // inframe_deletion in list of codons
 checks.inframe_deletion_in_codons = (variantData, codons) => {
-  const codon = psyntax_to_codon(variantData.psyntax);
+  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
   }
@@ -138,7 +147,8 @@ checks.inframe_insertion_in_exons = (variantData, exons) => {
 
 // missense in codon ranges
 checks.missense_in_codon_ranges = (variantData, codon_ranges) => {
-  const codon = psyntax_to_codon(variantData.psyntax);
+  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
   }
@@ -158,7 +168,8 @@ checks.missense_in_codon_ranges = (variantData, codon_ranges) => {
 
 // inframe_indel in codon ranges
 checks.inframe_indel_in_codon_ranges = (variantData, codon_ranges) => {
-  const codon = psyntax_to_codon(variantData.psyntax);
+  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
   }
@@ -211,7 +222,6 @@ checks.nonsense_in_exons = (variantData, exons) => {
   return false;
 };
 const classB = (variantData) => {
-  console.log(variantData);
   // First check for literature annotation flags from the pipeline
   if (
     variantData.annotations.includes('AMLTCGA') ||

@@ -3,7 +3,7 @@ import variantClassifier from '../src/variantClassifier.js';
 test('KIT (not in classB_config) with annotation including AMLTCGA should match', () => {
   const variantData = {
     gene: 'KIT',
-    annotation: 'xxxxAMLTCGA xxxx'
+    annotations: 'xxxxAMLTCGA xxxx'
   };
 
   const res = variantClassifier(variantData);
@@ -15,7 +15,7 @@ test('KIT (not in classB_config) with annotation including AMLTCGA should match'
 test('KIT (not in classB_config) with annotation including MDS should match', () => {
   const variantData = {
     gene: 'KIT',
-    annotation: 'xxxxMDSxxxx'
+    annotations: 'xxxxMDSxxxx'
   };
 
   const res = variantClassifier(variantData);
@@ -27,7 +27,7 @@ test('KIT (not in classB_config) with annotation including MDS should match', ()
 test('KIT (not in classB_config) without annotation should not match', () => {
   const variantData = {
     gene: 'RAD1',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -37,7 +37,7 @@ test('BRAF V600E should match', () => {
   const variantData = {
     gene: 'BRAF',
     psyntax: 'V600E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -50,7 +50,7 @@ test('BRAF V600Q should not match', () => {
   const variantData = {
     gene: 'BRAF',
     psyntax: 'V600Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -61,7 +61,7 @@ test('CALR frameshift in codon 352 should not match', () => {
     gene: 'CALR',
     consequence: 'frameshift',
     psyntax: 'V352E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -72,7 +72,7 @@ test('CALR frameshift in codon 353 should match', () => {
     gene: 'CALR',
     consequence: 'frameshift',
     psyntax: 'V353E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -86,7 +86,7 @@ test('CALR non-frameshift in codon 353 should not match', () => {
     gene: 'CALR',
     consequence: 'missense',
     psyntax: 'V353E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -97,7 +97,7 @@ test('CBL missense in codon 365 should not match', () => {
     gene: 'CBL',
     consequence: 'missense',
     psyntax: 'V365E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -108,7 +108,7 @@ test('CBL missense in codon 366 should match', () => {
     gene: 'CBL',
     consequence: 'missense',
     psyntax: 'V366E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -122,7 +122,7 @@ test('CBL missense in codon 400 should match', () => {
     gene: 'CBL',
     consequence: 'missense',
     psyntax: 'V400E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -136,7 +136,7 @@ test('CBL missense in codon 420 should match', () => {
     gene: 'CBL',
     consequence: 'missense',
     psyntax: 'V420E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -150,7 +150,7 @@ test('CBL missense in codon 421 should not match', () => {
     gene: 'CBL',
     consequence: 'missense',
     psyntax: 'V421',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -161,7 +161,7 @@ test('CBL synonymous in codon 366 should not match', () => {
     gene: 'CBL',
     consequence: 'synonymous',
     psyntax: 'V366E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -171,7 +171,7 @@ test('CSF3R T618I should match', () => {
   const variantData = {
     gene: 'CSF3R',
     psyntax: 'T618I',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -185,7 +185,7 @@ test('CSF3R T618Q should not match', () => {
     gene: 'CSF3R',
     consequence: 'missense',
     psyntax: 'T618Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -195,7 +195,7 @@ test('CSF3R T640N should match', () => {
   const variantData = {
     gene: 'CSF3R',
     psyntax: 'T640N',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -209,7 +209,7 @@ test('CSF3R T640Q should not match', () => {
     gene: 'CSF3R',
     consequence: 'missense',
     psyntax: 'T640Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -221,7 +221,7 @@ test('CSF3R stop_gained in exon 16 should match', () => {
     consequence: 'stop_gained',
     exon: 16,
     psyntax: 'T618Q',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -236,7 +236,7 @@ test('CSF3R stop_gained in exon 17 should not match', () => {
     consequence: 'stop_gained',
     exon: 17,
     psyntax: 'T618Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -262,7 +262,7 @@ for (const DNMT3A_missense_psyntax of DNMT3A_missense_psyntaxes) {
       gene: 'DNMT3A',
       consequence: 'missense',
       psyntax: DNMT3A_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -277,7 +277,7 @@ test('DNMT3A synonymous in A910 should not match', () => {
     gene: 'DNMT3A',
     consequence: 'synonymous',
     psyntax: 'A910',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -288,7 +288,7 @@ test('DNMT3A missense in A911 should not match', () => {
     gene: 'DNMT3A',
     consequence: 'missense',
     psyntax: 'A911',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -298,7 +298,7 @@ test('ETNK1 H243Y should match', () => {
   const variantData = {
     gene: 'ETNK1',
     psyntax: 'H243Y',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -311,7 +311,7 @@ test('ETNK1 H243Q should not match', () => {
   const variantData = {
     gene: 'ETNK1',
     psyntax: 'H243Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -321,7 +321,7 @@ test('ETNK1 N244S should match', () => {
   const variantData = {
     gene: 'ETNK1',
     psyntax: 'N244S',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -334,7 +334,7 @@ test('ETNK1 N244Q should not match', () => {
   const variantData = {
     gene: 'ETNK1',
     psyntax: 'N244Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -344,7 +344,7 @@ test('EZH2 N693K should match', () => {
   const variantData = {
     gene: 'EZH2',
     psyntax: 'N693K',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -358,7 +358,7 @@ test('EZH2 N693Q should not match', () => {
     gene: 'EZH2',
     consequence: 'missense',
     psyntax: 'N693Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -372,7 +372,7 @@ for (const EZH2_missense_psyntax of EZH2_missense_psyntaxes) {
       gene: 'EZH2',
       consequence: 'missense',
       psyntax: EZH2_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -387,7 +387,7 @@ test('EZH2 synonymous in Y646 should not match', () => {
     gene: 'EZH2',
     consequence: 'synonymous',
     psyntax: 'Y646',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -398,7 +398,7 @@ test('EZH2 missense in Y647 should not match', () => {
     gene: 'EZH2',
     consequence: 'missense',
     psyntax: 'Y647',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -409,7 +409,7 @@ test('GATA2 missense in codon 348 should not match', () => {
     gene: 'GATA2',
     consequence: 'missense',
     psyntax: 'V348E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -420,7 +420,7 @@ test('GATA2 missense in codon 349 should match', () => {
     gene: 'GATA2',
     consequence: 'missense',
     psyntax: 'V349E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -434,7 +434,7 @@ test('GATA2 missense in codon 380 should match', () => {
     gene: 'GATA2',
     consequence: 'missense',
     psyntax: 'V380E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -448,7 +448,7 @@ test('GATA2 missense in codon 398 should match', () => {
     gene: 'GATA2',
     consequence: 'missense',
     psyntax: 'V398E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -462,7 +462,7 @@ test('GATA2 missense in codon 399 should not match', () => {
     gene: 'GATA2',
     consequence: 'missense',
     psyntax: 'V399E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -473,7 +473,7 @@ test('GATA2 synonymous in codon 349 should not match', () => {
     gene: 'GATA2',
     consequence: 'synonymous',
     psyntax: 'V349E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -487,7 +487,7 @@ for (const GNB1_missense_psyntax of GNB1_missense_psyntaxes) {
       gene: 'GNB1',
       consequence: 'missense',
       psyntax: GNB1_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -502,7 +502,7 @@ test('GNB1 synonymous in K57 should not match', () => {
     gene: 'GNB1',
     consequence: 'synonymous',
     psyntax: 'K57',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -513,7 +513,7 @@ test('GNB1 missense in K58 should not match', () => {
     gene: 'GNB1',
     consequence: 'missense',
     psyntax: 'K58',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -527,7 +527,7 @@ for (const KRAS_missense_psyntax of KRAS_missense_psyntaxes) {
       gene: 'KRAS',
       consequence: 'missense',
       psyntax: KRAS_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -542,7 +542,7 @@ test('KRAS synonymous in G12 should not match', () => {
     gene: 'KRAS',
     consequence: 'synonymous',
     psyntax: 'G12',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -553,7 +553,7 @@ test('KRAS missense in G14 should not match', () => {
     gene: 'KRAS',
     consequence: 'missense',
     psyntax: 'G14',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -563,7 +563,7 @@ test('MPL W515L should match', () => {
   const variantData = {
     gene: 'MPL',
     psyntax: 'W515L',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -576,7 +576,7 @@ test('MPL W515K should match', () => {
   const variantData = {
     gene: 'MPL',
     psyntax: 'W515K',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -589,7 +589,7 @@ test('MPL W515Q should not match', () => {
   const variantData = {
     gene: 'MPL',
     psyntax: 'W515Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -603,7 +603,7 @@ for (const NRAS_missense_psyntax of NRAS_missense_psyntaxes) {
       gene: 'NRAS',
       consequence: 'missense',
       psyntax: NRAS_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -618,7 +618,7 @@ test('NRAS synonymous in G12 should not match', () => {
     gene: 'NRAS',
     consequence: 'synonymous',
     psyntax: 'G12',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -629,7 +629,7 @@ test('NRAS missense in G14 should not match', () => {
     gene: 'NRAS',
     consequence: 'missense',
     psyntax: 'G14',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -639,7 +639,7 @@ test('NPM1 W288fs*12 should match', () => {
   const variantData = {
     gene: 'NPM1',
     psyntax: 'W288fs*12',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -652,7 +652,7 @@ test('NPM1 W288Q should not match', () => {
   const variantData = {
     gene: 'NPM1',
     psyntax: 'W288Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -666,7 +666,7 @@ for (const PHF6_missense_psyntax of PHF6_missense_psyntaxes) {
       gene: 'PHF6',
       consequence: 'missense',
       psyntax: PHF6_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -681,7 +681,7 @@ test('PHF6 synonymous in R274 should not match', () => {
     gene: 'PHF6',
     consequence: 'synonymous',
     psyntax: 'R274',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -692,7 +692,7 @@ test('PHF6 missense in R275 should not match', () => {
     gene: 'PHF6',
     consequence: 'missense',
     psyntax: 'R275',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -706,7 +706,7 @@ for (const PRPF8_missense_psyntax of PRPF8_missense_psyntaxes) {
       gene: 'PRPF8',
       consequence: 'missense',
       psyntax: PRPF8_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -721,7 +721,7 @@ test('PRPF8 synonymous in C1594 should not match', () => {
     gene: 'PRPF8',
     consequence: 'synonymous',
     psyntax: 'C1594',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -732,7 +732,7 @@ test('PRPF8 missense in C1595 should not match', () => {
     gene: 'PRPF8',
     consequence: 'missense',
     psyntax: 'C1595',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -743,7 +743,7 @@ test('PTPN11 missense in codon 60 should not match', () => {
     gene: 'PTPN11',
     consequence: 'missense',
     psyntax: 'V60E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -754,7 +754,7 @@ test('PTPN11 missense in codon 61 should match', () => {
     gene: 'PTPN11',
     consequence: 'missense',
     psyntax: 'V61E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -768,7 +768,7 @@ test('PTPN11 missense in codon 70 should match', () => {
     gene: 'PTPN11',
     consequence: 'missense',
     psyntax: 'V70E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -782,7 +782,7 @@ test('PTPN11 missense in codon 76 should match', () => {
     gene: 'PTPN11',
     consequence: 'missense',
     psyntax: 'V76E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -796,7 +796,7 @@ test('PTPN11 missense in codon 77 should not match', () => {
     gene: 'PTPN11',
     consequence: 'missense',
     psyntax: 'V77E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -807,7 +807,7 @@ test('PTPN11 synonymous in codon 76 should not match', () => {
     gene: 'PTPN11',
     consequence: 'synonymous',
     psyntax: 'V76E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -818,7 +818,7 @@ test('JAK2 V617F should match', () => {
     gene: 'JAK2',
     consequence: 'missense',
     psyntax: 'V617F',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -832,7 +832,7 @@ test('JAK2 V617Q should not match', () => {
     gene: 'JAK2',
     consequence: 'missense',
     psyntax: 'V617Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -843,7 +843,7 @@ test('JAK2 missense in codon 504 should not match', () => {
     gene: 'JAK2',
     consequence: 'missense',
     psyntax: 'V504E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -854,7 +854,7 @@ test('JAK2 inframe_insertion in codon 504 should not match', () => {
     gene: 'JAK2',
     consequence: 'inframe_insertion',
     psyntax: 'V504E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -865,7 +865,7 @@ test('JAK2 inframe_deletion in codon 504 should not match', () => {
     gene: 'JAK2',
     consequence: 'inframe_deletion',
     psyntax: 'V504E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -876,7 +876,7 @@ test('JAK2 missense in codon 505 should match', () => {
     gene: 'JAK2',
     consequence: 'missense',
     psyntax: 'V505E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -890,7 +890,7 @@ test('JAK2 missense in codon 520 should match', () => {
     gene: 'JAK2',
     consequence: 'missense',
     psyntax: 'V520E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -904,7 +904,7 @@ test('JAK2 missense in codon 547 should match', () => {
     gene: 'JAK2',
     consequence: 'missense',
     psyntax: 'V547E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -918,7 +918,7 @@ test('JAK2 missense in codon 548 should not match', () => {
     gene: 'JAK2',
     consequence: 'missense',
     psyntax: 'V548E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -929,7 +929,7 @@ test('JAK2 inframe_insertion in codon 505 should match', () => {
     gene: 'JAK2',
     consequence: 'inframe_insertion',
     psyntax: 'V505E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -943,7 +943,7 @@ test('JAK2 inframe_insertion in codon 520 should match', () => {
     gene: 'JAK2',
     consequence: 'inframe_insertion',
     psyntax: 'V520E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -957,7 +957,7 @@ test('JAK2 inframe_insertion in codon 547 should match', () => {
     gene: 'JAK2',
     consequence: 'inframe_insertion',
     psyntax: 'V547E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -971,7 +971,7 @@ test('JAK2 inframe_insertion in codon 548 should not match', () => {
     gene: 'JAK2',
     consequence: 'inframe_insertion',
     psyntax: 'V548E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -982,7 +982,7 @@ test('JAK2 inframe_deletion in codon 505 should match', () => {
     gene: 'JAK2',
     consequence: 'inframe_deletion',
     psyntax: 'V505E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -996,7 +996,7 @@ test('JAK2 inframe_deletion in codon 520 should match', () => {
     gene: 'JAK2',
     consequence: 'inframe_deletion',
     psyntax: 'V520E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1010,7 +1010,7 @@ test('JAK2 inframe_deletion in codon 547 should match', () => {
     gene: 'JAK2',
     consequence: 'inframe_deletion',
     psyntax: 'V547E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1024,7 +1024,7 @@ test('JAK2 inframe_deletion in codon 548 should not match', () => {
     gene: 'JAK2',
     consequence: 'inframe_deletion',
     psyntax: 'V548E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1035,7 +1035,7 @@ test('JAK2 synonymous in codon 547 should not match', () => {
     gene: 'JAK2',
     consequence: 'synonymous',
     psyntax: 'V547',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1049,7 +1049,7 @@ for (const RUNX1_missense_psyntax of RUNX1_missense_psyntaxes) {
       gene: 'RUNX1',
       consequence: 'missense',
       psyntax: RUNX1_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -1064,7 +1064,7 @@ test('RUNX1 synonymous in R166 should not match', () => {
     gene: 'RUNX1',
     consequence: 'synonymous',
     psyntax: 'R166',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1075,7 +1075,7 @@ test('RUNX1 missense in R167 should not match', () => {
     gene: 'RUNX1',
     consequence: 'missense',
     psyntax: 'R167',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1086,7 +1086,7 @@ test('SF3B1 K700E should match', () => {
     gene: 'SF3B1',
     consequence: 'missense',
     psyntax: 'K700E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1100,7 +1100,7 @@ test('SF3B1 K700Q should not match', () => {
     gene: 'SF3B1',
     consequence: 'missense',
     psyntax: 'K700Q',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1126,7 +1126,7 @@ for (const SF3B1_missense_psyntax of SF3B1_missense_psyntaxes) {
       gene: 'SF3B1',
       consequence: 'missense',
       psyntax: SF3B1_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -1141,7 +1141,7 @@ test('SF3B1 synonymous in E622 should not match', () => {
     gene: 'SF3B1',
     consequence: 'synonymous',
     psyntax: 'E622',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1152,7 +1152,7 @@ test('SF3B1 missense in D782 should not match', () => {
     gene: 'SF3B1',
     consequence: 'missense',
     psyntax: 'D782',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1173,7 +1173,7 @@ for (const SETBP1_missense_psyntax of SETBP1_missense_psyntaxes) {
       gene: 'SETBP1',
       consequence: 'missense',
       psyntax: SETBP1_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -1188,7 +1188,7 @@ test('SETBP1 synonymous in E858 should not match', () => {
     gene: 'SETBP1',
     consequence: 'synonymous',
     psyntax: 'E858',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1199,7 +1199,7 @@ test('SETBP1 missense in G871 should not match', () => {
     gene: 'SETBP1',
     consequence: 'missense',
     psyntax: 'G871',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1213,7 +1213,7 @@ for (const SRSF2_missense_psyntax of SRSF2_missense_psyntaxes) {
       gene: 'SRSF2',
       consequence: 'missense',
       psyntax: SRSF2_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -1228,7 +1228,7 @@ test('SRSF2 synonymous in P95 should not match', () => {
     gene: 'SRSF2',
     consequence: 'synonymous',
     psyntax: 'P95',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1239,7 +1239,7 @@ test('SRSF2 missense in P96 should not match', () => {
     gene: 'SRSF2',
     consequence: 'missense',
     psyntax: 'P96',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1253,7 +1253,7 @@ for (const SRSF2_deletion_psyntax of SRSF2_deletion_psyntaxes) {
       gene: 'SRSF2',
       consequence: 'inframe_deletion',
       psyntax: SRSF2_deletion_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -1268,7 +1268,7 @@ test('SRSF2 inframe_insertion in P95 should not match', () => {
     gene: 'SRSF2',
     consequence: 'inframe_insertion',
     psyntax: 'P95',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1279,7 +1279,7 @@ test('SRSF2 inframe_deletion in P96 should not match', () => {
     gene: 'SRSF2',
     consequence: 'inframe_deletion',
     psyntax: 'P96',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1290,7 +1290,7 @@ test('STAT3 missense in codon 583 should not match', () => {
     gene: 'STAT3',
     consequence: 'missense',
     psyntax: 'V583',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1301,7 +1301,7 @@ test('STAT3 missense in codon 584 should match', () => {
     gene: 'STAT3',
     consequence: 'missense',
     psyntax: 'V584E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1315,7 +1315,7 @@ test('STAT3 missense in codon 600 should match', () => {
     gene: 'STAT3',
     consequence: 'missense',
     psyntax: 'V600E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1329,7 +1329,7 @@ test('STAT3 missense in codon 674 should match', () => {
     gene: 'STAT3',
     consequence: 'missense',
     psyntax: 'V674E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1343,7 +1343,7 @@ test('STAT3 missense in codon 675 should not match', () => {
     gene: 'STAT3',
     consequence: 'missense',
     psyntax: 'V675E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1354,7 +1354,7 @@ test('TET2 missense in codon 1133 should not match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1133E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1365,7 +1365,7 @@ test('TET2 missense in codon 1134 should match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1134E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1379,7 +1379,7 @@ test('TET2 missense in codon 1400 should match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1400E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1393,7 +1393,7 @@ test('TET2 missense in codon 1444 should match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1444E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1407,7 +1407,7 @@ test('TET2 missense in codon 1445 should not match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1445E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1418,7 +1418,7 @@ test('TET2 missense in codon 1841 should not match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1841E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1429,7 +1429,7 @@ test('TET2 missense in codon 1842 should match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1842E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1443,7 +1443,7 @@ test('TET2 missense in codon 1900 should match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1900E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1457,7 +1457,7 @@ test('TET2 missense in codon 1921 should match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1921E',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1471,7 +1471,7 @@ test('TET2 missense in codon 1922 should not match', () => {
     gene: 'TET2',
     consequence: 'missense',
     psyntax: 'V1922E',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1482,7 +1482,7 @@ test('TP53 any missense except P47S or P72R should match', () => {
     gene: 'TP53',
     consequence: 'missense',
     psyntax: '',
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1496,7 +1496,7 @@ test('TP53 synonymous should not match', () => {
     gene: 'TP53',
     consequence: 'synonymous',
     psyntax: '',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1507,7 +1507,7 @@ test('TP53 missense P47S should not not match', () => {
     gene: 'TP53',
     consequence: 'missense',
     psyntax: 'P47S',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1518,7 +1518,7 @@ test('TP53 missense P72R should not not match', () => {
     gene: 'TP53',
     consequence: 'missense',
     psyntax: 'P72R',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1532,7 +1532,7 @@ for (const U2AF1_missense_psyntax of U2AF1_missense_psyntaxes) {
       gene: 'U2AF1',
       consequence: 'missense',
       psyntax: U2AF1_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -1547,7 +1547,7 @@ test('U2AF1 synonymous in S34 should not match', () => {
     gene: 'U2AF1',
     consequence: 'synonymous',
     psyntax: 'S34',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1558,7 +1558,7 @@ test('U2AF1 missense in S35 should not match', () => {
     gene: 'U2AF1',
     consequence: 'missense',
     psyntax: 'S35',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1572,7 +1572,7 @@ for (const UBA1_missense_psyntax of UBA1_missense_psyntaxes) {
       gene: 'UBA1',
       consequence: 'missense',
       psyntax: UBA1_missense_psyntax,
-      annotation: ''
+      annotations: ''
     };
 
     const res = variantClassifier(variantData);
@@ -1587,7 +1587,7 @@ test('UBA1 synonymous in M41 should not match', () => {
     gene: 'UBA1',
     consequence: 'synonymous',
     psyntax: 'M41',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1598,7 +1598,7 @@ test('UBA1 missense in M42 should not match', () => {
     gene: 'UBA1',
     consequence: 'missense',
     psyntax: 'M42',
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1609,7 +1609,7 @@ test('UBTF inframe_insertion in exon 13 should match', () => {
     gene: 'UBTF',
     consequence: 'inframe_insertion',
     exon: 13,
-    annotation: ''
+    annotations: ''
   };
 
   const res = variantClassifier(variantData);
@@ -1623,7 +1623,7 @@ test('UBTF inframe_insertion in exon 14 should not match', () => {
     gene: 'UBTF',
     consequence: 'inframe_insertion',
     exon: 14,
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
@@ -1634,7 +1634,7 @@ test('UBTF missense in exon 13 should not match', () => {
     gene: 'UBTF',
     consequence: 'missense',
     exon: 13,
-    annotation: ''
+    annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
