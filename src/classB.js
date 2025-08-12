@@ -1,4 +1,4 @@
-import config from '../config/classB_config.json' with { type: 'json' };
+import config from '../config/classB_config.json';
 
 const psyntax_to_codon = (psyntax) => {
   if (!psyntax) {
@@ -11,6 +11,7 @@ const psyntax_to_codon = (psyntax) => {
 
 const template = {
   class: 'B',
+  significance: 'pathogenic',
   match: false
 };
 
@@ -210,15 +211,16 @@ checks.nonsense_in_exons = (variantData, exons) => {
   return false;
 };
 const classB = (variantData) => {
+  console.log(variantData);
   // First check for literature annotation flags from the pipeline
   if (
-    variantData.annotation.includes('AMLTCGA') ||
-    variantData.annotation.includes('MDS')
+    variantData.annotations.includes('AMLTCGA') ||
+    variantData.annotations.includes('MDS')
   ) {
     return {
       ...template,
       match: true,
-      evidence: 'AMLTCGA || MDS in annotation'
+      evidence: 'AMLTCGA || MDS in annotations'
     };
   }
 

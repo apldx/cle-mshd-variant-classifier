@@ -6,6 +6,7 @@ const isInSet = (letter, letterSet) => {
 const classA = (variantData) => {
   const template = {
     class: 'A',
+    significance: 'potentially_therapeutic',
     match: false
   };
 
