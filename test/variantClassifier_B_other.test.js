@@ -215,27 +215,106 @@ test('CSF3R T640Q should not match', () => {
   expect(variantClassifier(variantData)).toBeFalsy();
 });
 
-test('CSF3R stop_gained in exon 16 should match', () => {
+test('CSF3R stop_gained in codon 738 should match', () => {
   const variantData = {
     gene: 'CSF3R',
     consequence: 'stop_gained',
-    exon: 16,
-    psyntax: 'T618Q',
+    psyntax: 'T738',
     annotations: ''
   };
 
   const res = variantClassifier(variantData);
   expect(res).toBeTruthy();
   expect(res.class).toBe('B');
-  expect(res.evidence).toMatch('nonsense_in_exons');
+  expect(res.evidence).toMatch('nonsense_in_codon_ranges');
 });
 
-test('CSF3R stop_gained in exon 17 should not match', () => {
+test('CSF3R frameshift in codon 738 should match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    consequence: 'frameshift',
+    psyntax: 'T738',
+    annotations: ''
+  };
+
+  const res = variantClassifier(variantData);
+  expect(res).toBeTruthy();
+  expect(res.class).toBe('B');
+  expect(res.evidence).toMatch('nonsense_in_codon_ranges');
+});
+
+test('CSF3R stop_gained in codon 800 should match', () => {
   const variantData = {
     gene: 'CSF3R',
     consequence: 'stop_gained',
-    exon: 17,
-    psyntax: 'T618Q',
+    psyntax: 'Q800',
+    annotations: ''
+  };
+
+  const res = variantClassifier(variantData);
+  expect(res).toBeTruthy();
+  expect(res.class).toBe('B');
+  expect(res.evidence).toMatch('nonsense_in_codon_ranges');
+});
+
+test('CSF3R frameshift in codon 800 should match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    consequence: 'frameshift',
+    psyntax: 'Q800',
+    annotations: ''
+  };
+
+  const res = variantClassifier(variantData);
+  expect(res).toBeTruthy();
+  expect(res.class).toBe('B');
+  expect(res.evidence).toMatch('nonsense_in_codon_ranges');
+});
+
+test('CSF3R stop_gained in codon 823 should match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    consequence: 'stop_gained',
+    psyntax: 'Q823',
+    annotations: ''
+  };
+
+  const res = variantClassifier(variantData);
+  expect(res).toBeTruthy();
+  expect(res.class).toBe('B');
+  expect(res.evidence).toMatch('nonsense_in_codon_ranges');
+});
+
+test('CSF3R frameshift in codon 823 should match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    consequence: 'frameshift',
+    psyntax: 'Q823',
+    annotations: ''
+  };
+
+  const res = variantClassifier(variantData);
+  expect(res).toBeTruthy();
+  expect(res.class).toBe('B');
+  expect(res.evidence).toMatch('nonsense_in_codon_ranges');
+});
+
+test('CSF3R stop_gained in codon 737 should not match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    consequence: 'stop_gained',
+    psyntax: 'T737',
+    annotations: ''
+  };
+
+  expect(variantClassifier(variantData)).toBeFalsy();
+});
+
+test('CSF3R frameshift in codon 824 should not match', () => {
+  const variantData = {
+    gene: 'CSF3R',
+    consequence: 'frameshift',
+    psyntax: 'T824',
     annotations: ''
   };
 

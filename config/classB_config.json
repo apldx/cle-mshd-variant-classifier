@@ -53,8 +53,11 @@
       "T618I",
       "T640N"
     ],
-    "nonsense_in_exons": [
-      16
+    "nonsense_in_codon_ranges": [
+      [
+        738,
+        823
+      ]
     ]
   },
   "CUX1": {

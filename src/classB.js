@@ -1,6 +1,6 @@
 import config from '../config/classB_config.json';
 
-const sanitizePsyntax = (psyntax) => {
+const sanitize_psyntax = (psyntax) => {
   return psyntax.replace(/^p./, '');
 };
 
@@ -37,7 +37,7 @@ checks.consequence = (variantData, consequences) => {
 
 // psyntax equals psyntax from list
 checks.psyntax = (variantData, psyntaxes) => {
-  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
   for (const psyntax of psyntaxes) {
     if (sPsyntax == psyntax) {
       return {
@@ -52,7 +52,7 @@ checks.psyntax = (variantData, psyntaxes) => {
 
 // frameshift after codon
 checks.frameshift_after_codon = (variantData, codon_cutoff) => {
-  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
   const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
@@ -71,7 +71,7 @@ checks.frameshift_after_codon = (variantData, codon_cutoff) => {
 
 // missense in list of codons
 checks.missense_in_codons = (variantData, codons) => {
-  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
   const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
@@ -92,7 +92,7 @@ checks.missense_in_codons = (variantData, codons) => {
 
 // missense in list of codons
 checks.missense_except_psyntax = (variantData, exceptions) => {
-  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
   if (variantData.consequence.includes('missense')) {
     for (const exception of exceptions) {
       if (sPsyntax == exception) {
@@ -110,7 +110,7 @@ checks.missense_except_psyntax = (variantData, exceptions) => {
 
 // inframe_deletion in list of codons
 checks.inframe_deletion_in_codons = (variantData, codons) => {
-  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
   const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
@@ -147,7 +147,7 @@ checks.inframe_insertion_in_exons = (variantData, exons) => {
 
 // missense in codon ranges
 checks.missense_in_codon_ranges = (variantData, codon_ranges) => {
-  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
   const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
@@ -166,9 +166,33 @@ checks.missense_in_codon_ranges = (variantData, codon_ranges) => {
   return false;
 };
 
+// nonsense (stop_gained or frameshift) in codon ranges
+checks.nonsense_in_codon_ranges = (variantData, codon_ranges) => {
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
+  const codon = psyntax_to_codon(sPsyntax);
+  if (!codon) {
+    return false;
+  }
+  if (
+    variantData.consequence.includes('stop_gained') ||
+    variantData.consequence.includes('frameshift')
+  ) {
+    for (const codon_range of codon_ranges) {
+      if (codon >= codon_range[0] && codon <= codon_range[1]) {
+        return {
+          ...template,
+          match: true,
+          evidence: `${variantData.gene} nonsense_in_codon_ranges ${codon_range[0]}-${codon_range[1]}`
+        };
+      }
+    }
+  }
+  return false;
+};
+
 // inframe_indel in codon ranges
 checks.inframe_indel_in_codon_ranges = (variantData, codon_ranges) => {
-  const sPsyntax = sanitizePsyntax(variantData.psyntax);
+  const sPsyntax = sanitize_psyntax(variantData.psyntax);
   const codon = psyntax_to_codon(sPsyntax);
   if (!codon) {
     return false;
@@ -206,9 +230,12 @@ checks.indel_in_exons = (variantData, exons) => {
   return false;
 };
 
-// nonsense (consequence stop_gained) in exons
+// nonsense (stop_gained or frameshift) in exons
 checks.nonsense_in_exons = (variantData, exons) => {
-  if (variantData.consequence.includes('stop_gained')) {
+  if (
+    variantData.consequence.includes('stop_gained') ||
+    variantData.consequence.includes('frameshift')
+  ) {
     for (const exon of exons) {
       if (variantData.exon === exon) {
         return {
