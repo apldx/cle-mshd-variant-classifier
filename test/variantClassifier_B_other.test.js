@@ -373,46 +373,40 @@ test('DNMT3A missense in A911 should not match', () => {
   expect(variantClassifier(variantData)).toBeFalsy();
 });
 
-test('ETNK1 H243Y should match', () => {
+const ETNK1_missense_psyntaxes = ['H154', 'N155', 'G156'];
+
+for (const ETNK1_missense_psyntax of ETNK1_missense_psyntaxes) {
+  test(`ETNK1 missense in ${ETNK1_missense_psyntax} should match`, () => {
+    const variantData = {
+      gene: 'ETNK1',
+      consequence: 'missense',
+      psyntax: ETNK1_missense_psyntax,
+      annotations: ''
+    };
+
+    const res = variantClassifier(variantData);
+    expect(res).toBeTruthy();
+    expect(res.class).toBe('B');
+    expect(res.evidence).toMatch('missense_in_codons');
+  });
+}
+
+test('ETNK1 synonymous in H154 should not match', () => {
   const variantData = {
     gene: 'ETNK1',
-    psyntax: 'H243Y',
-    annotations: ''
-  };
-
-  const res = variantClassifier(variantData);
-  expect(res).toBeTruthy();
-  expect(res.class).toBe('B');
-  expect(res.evidence).toMatch('psyntax');
-});
-
-test('ETNK1 H243Q should not match', () => {
-  const variantData = {
-    gene: 'ETNK1',
-    psyntax: 'H243Q',
+    consequence: 'synonymous',
+    psyntax: 'H154',
     annotations: ''
   };
 
   expect(variantClassifier(variantData)).toBeFalsy();
 });
 
-test('ETNK1 N244S should match', () => {
+test('ETNK1 missense in 153 should not match', () => {
   const variantData = {
     gene: 'ETNK1',
-    psyntax: 'N244S',
-    annotations: ''
-  };
-
-  const res = variantClassifier(variantData);
-  expect(res).toBeTruthy();
-  expect(res.class).toBe('B');
-  expect(res.evidence).toMatch('psyntax');
-});
-
-test('ETNK1 N244Q should not match', () => {
-  const variantData = {
-    gene: 'ETNK1',
-    psyntax: 'N244Q',
+    consequence: 'missense',
+    psyntax: 'Y153',
     annotations: ''
   };
 

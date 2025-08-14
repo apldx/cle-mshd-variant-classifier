@@ -95,9 +95,10 @@
     ]
   },
   "ETNK1": {
-    "psyntax": [
-      "H243Y",
-      "N244S"
+    "missense_in_codons": [
+      154,
+      155,
+      156
     ]
   },
   "ETV6": {
