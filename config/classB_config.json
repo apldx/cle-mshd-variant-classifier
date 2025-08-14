@@ -68,9 +68,6 @@
     ]
   },
   "DDX41": {
-    "psyntax": [
-      "R525H"
-    ],
     "consequence": [
       "stop_gained",
       "frameshift",
